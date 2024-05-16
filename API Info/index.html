@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        #logContent {
+            white-space: pre-line;
+            font-family: monospace;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .logLine {
+            margin-bottom: 5px;
+            /* Thêm khoảng cách giữa các dòng */
+        }
+        
+        .newLine {
+            color: blue;
+            /* Màu đỏ cho dòng chứa từ "New" */
+            font-weight: bold;
+            /* In đậm cho dòng chứa từ "New" */
+        }
+        
+        .dateLine {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Log DHCP Lisener</h1>
+
+    <div id="logContent">
+        <!-- Log content will be displayed here -->
+    </div>
+
+    <script>
+        // Fetch log.txt content using JavaScript and display it in the logContent div
+        async function fetchLogContent() {
+            try {
+                const response = await fetch('log.txt');
+                const logText = await response.text();
+
+                // Chia nội dung log thành từng dòng
+                const logLines = logText.split('\n');
+
+                // Tạo HTML cho từng dòng và thêm class 'logLine', 'newLine', hoặc 'dateLine'
+                const logHtml = logLines.map(line => {
+                    let lineClass = 'logLine';
+
+                    if (line.includes('New')) {
+                        lineClass = 'newLine';
+                    } else {
+                        const dateRegex = /^\d{4}-\d{2}-\d{2}/;
+                        if (dateRegex.test(line)) {
+                            lineClass = 'dateLine';
+                        }
+                    }
+
+                    return `<div class="${lineClass}">${line}</div>`;
+                }).join('');
+
+                // Hiển thị nội dung log trong div
+                document.getElementById('logContent').innerHTML = logHtml;
+            } catch (error) {
+                console.error('Error fetching log content:', error);
+            }
+        }
+
+        // Fetch log content when the page loads
+        window.onload = function() {
+            fetchLogContent(); // Gọi hàm fetchLogContent ngay khi trang được tải
+
+            // Cập nhật nội dung log mỗi giây một lần
+            setInterval(fetchLogContent, 1000);
+        };
+    </script>
+
+</body>
+
+</html>

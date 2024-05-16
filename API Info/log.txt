@@ -1,0 +1,20 @@
+2024-02-20 14:21:27
+New DHCP Discover
+Host kali (00:0c:29:26:cd:2d) asked for an IP
+New DHCP Offer
+DHCP Server 192.168.10.254 (00:50:56:e1:b2:82) offered 192.168.10.161
+DHCP Options: subnet_mask: 255.255.255.0, lease_time: 1800, router: 192.168.10.2, name_server: 192.168.10.2, domain: localdomain
+New DHCP Request
+Host kali (00:0c:29:26:cd:2d) requested 192.168.10.161
+
+2024-02-20 14:21:27
+New DHCP Discover
+Host kali (00:0c:29:26:cd:2d) asked for an IP
+New DHCP Offer
+DHCP Server 192.168.10.254 (00:50:56:e1:b2:82) offered 192.168.10.161
+DHCP Options: subnet_mask: 255.255.255.0, lease_time: 1800, router: 192.168.10.2, name_server: 192.168.10.2, domain: localdomain
+
+2024-02-20 14:21:26
+New DHCP Discover
+Host kali (00:0c:29:26:cd:2d) asked for an IP
+
